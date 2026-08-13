@@ -5,14 +5,17 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <pthread.h>
+#include <cstring>
+#include <cstdarg>
 #include <functional>
+#include <memory>
 
 #include <rust/cxx.h>
 
-void LOGD(const char *fmt, ...) __printflike(1, 2);
-void LOGI(const char *fmt, ...) __printflike(1, 2);
-void LOGW(const char *fmt, ...) __printflike(1, 2);
-void LOGE(const char *fmt, ...) __printflike(1, 2);
+__attribute__((format(printf, 1, 2))) void LOGD(const char *fmt, ...);
+__attribute__((format(printf, 1, 2))) void LOGI(const char *fmt, ...);
+__attribute__((format(printf, 1, 2))) void LOGW(const char *fmt, ...);
+__attribute__((format(printf, 1, 2))) void LOGE(const char *fmt, ...);
 #define PLOGE(fmt, args...) LOGE(fmt " failed with %d: %s\n", ##args, errno, std::strerror(errno))
 
 extern "C" {
@@ -207,9 +210,9 @@ std::string &replace_all(std::string &str, std::string_view from, std::string_vi
 std::vector<std::string> split(std::string_view s, std::string_view delims);
 
 // Similar to vsnprintf, but the return value is the written number of bytes
-__printflike(3, 0) int vssprintf(char *dest, size_t size, const char *fmt, va_list ap);
+__attribute__((format(printf, 3, 0))) int vssprintf(char *dest, size_t size, const char *fmt, va_list ap);
 // Similar to snprintf, but the return value is the written number of bytes
-__printflike(3, 4) int ssprintf(char *dest, size_t size, const char *fmt, ...);
+__attribute__((format(printf, 3, 4))) int ssprintf(char *dest, size_t size, const char *fmt, ...);
 // This is not actually the strscpy from the Linux kernel.
 // Silently truncates, and returns the number of bytes written.
 extern "C" size_t strscpy(char *dest, const char *src, size_t size);

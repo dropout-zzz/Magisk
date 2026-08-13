@@ -40,12 +40,18 @@ static void dump(const void *buf, size_t size, const char *filename) {
 }
 
 static size_t restore(int fd, const char *filename) {
+#ifdef __linux__
     int ifd = xopen(filename, O_RDONLY);
     size_t size = lseek(ifd, 0, SEEK_END);
     lseek(ifd, 0, SEEK_SET);
     xsendfile(fd, ifd, nullptr, size);
     close(ifd);
     return size;
+#else
+    mmap_data m(filename);
+    xwrite(fd, m.data(), m.size());
+    return m.size();
+#endif
 }
 
 static bool check_env(const char *name) {
@@ -783,7 +789,7 @@ void repack(Utf8CStr src_img, Utf8CStr out_img, bool skip_comp) {
         if (boot.flags[ZIMAGE_KERNEL]) {
             if (hdr->kernel_size() > boot.hdr->kernel_size()) {
                 fprintf(stderr, "! Recompressed kernel is too large, using original kernel\n");
-                ftruncate64(fd, lseek64(fd, - (off64_t) hdr->kernel_size(), SEEK_CUR));
+                ftruncate(fd, lseek(fd, - (off_t) hdr->kernel_size(), SEEK_CUR));
                 xwrite(fd, boot.kernel, boot.hdr->kernel_size());
             } else if (!skip_comp) {
                 // Pad zeros to make sure the zImage file size does not change

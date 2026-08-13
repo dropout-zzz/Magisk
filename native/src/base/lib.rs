@@ -24,6 +24,7 @@ mod dir;
 mod files;
 mod logging;
 mod misc;
+#[cfg(target_os = "android")]
 mod mount;
 mod result;
 mod xwrap;

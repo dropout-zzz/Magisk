@@ -523,7 +523,7 @@ dyn_img_hdr *clone() const override {   \
 decltype(std::declval<const dyn_img_hdr>().name()) name() const override { return hdr_name->name; }
 
 #define __impl_var(name, hdr_name) \
-decltype(std::declval<dyn_img_hdr>().name()) name() override { return hdr_name->name; } \
+decltype(std::declval<dyn_img_hdr>().name()) name() override { return *&hdr_name->name; } \
 __impl_val(name, hdr_name)
 
 #define impl_cls(ver)  __impl_cls(dyn_img_##ver, boot_img_hdr_##ver)

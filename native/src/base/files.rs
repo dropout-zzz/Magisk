@@ -327,6 +327,7 @@ impl Utf8CStr {
         Ok(())
     }
 
+    #[cfg(target_os = "android")]
     pub fn get_secontext(&self, con: &mut dyn Utf8CStrBuf) -> OsResult<'_, ()> {
         con.clear();
         let result = unsafe {
@@ -349,6 +350,7 @@ impl Utf8CStr {
         }
     }
 
+    #[cfg(target_os = "android")]
     pub fn set_secontext<'a>(&'a self, con: &'a Utf8CStr) -> OsResult<'a, ()> {
         unsafe {
             libc::lsetxattr(
@@ -555,6 +557,7 @@ impl FsPathFollow {
         Ok(())
     }
 
+    #[cfg(target_os = "android")]
     pub fn get_secontext(&self, con: &mut dyn Utf8CStrBuf) -> OsResult<'_, ()> {
         con.clear();
         let result = unsafe {
@@ -577,6 +580,7 @@ impl FsPathFollow {
         }
     }
 
+    #[cfg(target_os = "android")]
     pub fn set_secontext<'a>(&'a self, con: &'a Utf8CStr) -> OsResult<'a, ()> {
         unsafe {
             libc::setxattr(
@@ -668,6 +672,7 @@ pub fn fd_set_attr(fd: RawFd, attr: &FileAttr) -> OsResult<'_, ()> {
     Ok(())
 }
 
+#[cfg(target_os = "android")]
 pub fn fd_get_secontext(fd: RawFd, con: &mut dyn Utf8CStrBuf) -> OsResult<'static, ()> {
     con.clear();
     let result = unsafe {
@@ -690,6 +695,7 @@ pub fn fd_get_secontext(fd: RawFd, con: &mut dyn Utf8CStrBuf) -> OsResult<'stati
     }
 }
 
+#[cfg(target_os = "android")]
 pub fn fd_set_secontext(fd: RawFd, con: &Utf8CStr) -> OsResult<'_, ()> {
     unsafe {
         libc::fsetxattr(

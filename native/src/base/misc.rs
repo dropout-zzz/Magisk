@@ -9,8 +9,14 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicPtr, Ordering};
 use std::{fmt, slice, str};
 
+#[cfg(any(target_os = "android", target_os = "cygwin"))]
 pub fn errno() -> &'static mut i32 {
     unsafe { &mut *libc::__errno() }
+}
+
+#[cfg(target_os = "linux")]
+pub fn errno() -> &'static mut i32 {
+    unsafe { &mut *libc::__errno_location() }
 }
 
 // When len is 0, don't care whether buf is null or not
