@@ -19,3 +19,6 @@
 [submodule "crt0"]
 	path = native/src/external/crt0
 	url = https://github.com/topjohnwu/crt0.git
+[submodule "corrosion"]
+	path = native/src/external/corrosion
+	url = https://github.com/corrosion-rs/corrosion.git
