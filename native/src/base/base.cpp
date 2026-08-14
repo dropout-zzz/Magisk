@@ -10,7 +10,9 @@
 #endif
 
 #include <base.hpp>
-#include <flags.h>
+#ifndef NO_FLAGS_H
+# include <flags.h>
+#endif
 
 using namespace std;
 
