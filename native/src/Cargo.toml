@@ -34,7 +34,7 @@ bzip2 = "0.6.1"
 zopfli = { version = "0.8.3", default-features = false}
 lz4 = "1.28.1"
 lzma-rust2 = { version = "0.18.0", default-features = false }
-nix = "0.31.3"
+nix = { path = "external/nix-rs" }
 bitflags = "2.13.1"
 
 # Rust crypto crates are tied together
