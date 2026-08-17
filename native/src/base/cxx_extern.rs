@@ -18,6 +18,7 @@ use libc::{c_char, mode_t};
 use nix::fcntl::OFlag;
 
 #[unsafe(no_mangle)]
+#[cfg(not(target_os = "macos"))]
 unsafe extern "C" fn canonical_path(path: *const c_char, buf: *mut u8, bufsz: usize) -> isize {
     unsafe {
         match Utf8CStr::from_ptr(path) {

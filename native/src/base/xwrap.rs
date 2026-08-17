@@ -21,6 +21,7 @@ fn ptr_to_str<'a>(ptr: *const c_char) -> Option<&'a str> {
 }
 
 #[unsafe(no_mangle)]
+#[cfg(not(target_os = "macos"))]
 unsafe extern "C" fn xrealpath(path: *const c_char, buf: *mut u8, bufsz: usize) -> isize {
     unsafe {
         match Utf8CStr::from_ptr(path) {
