@@ -22,6 +22,7 @@ Some highlight features:
 
 - [Installation Instruction](https://topjohnwu.github.io/Magisk/install.html)
 - [Building and Development](https://topjohnwu.github.io/Magisk/build.html)
+- [Building MagiskBoot](docs/build_magiskboot.md)
 - [Magisk Documentation](https://topjohnwu.github.io/Magisk/)
 - [Zygisk module sample](https://github.com/topjohnwu/zygisk-module-sample)
 
