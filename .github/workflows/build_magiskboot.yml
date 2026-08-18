@@ -1,0 +1,32 @@
+name: MagiskBoot Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build MagiskBoot
+    runs-on: macos-26
+    steps:
+      - name: Check out
+        uses: actions/checkout@v6
+
+      - name: Clone submodule
+        run: scripts/clone_submodules.sh
+
+      - name: Build
+        run: |
+          # Debug mode builds faster but is too slow in testsuites.
+          cmake -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PWD
+          ./build_magiskboot.sh .
+          cmake --install .
+
+      - name: Run MagiskBoot test
+        run: scripts/test_magiskboot.py bin/magiskboot
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.sha }}
+          path: bin
+          compression-level: 9
