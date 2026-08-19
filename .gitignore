@@ -16,6 +16,10 @@ CMakeCache.txt
 Makefile
 install_manifest.txt
 
+# Source tarballs
+magiskboot-src-*.txz
+*.dropout
+
 # Clangd
 .cache/
 
