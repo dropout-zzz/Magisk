@@ -1,3 +1,7 @@
+# Test assets
+testdata_*.dump linguist-generated
+ramfs_contents_*.json linguist-generated
+
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text eol=lf
 
