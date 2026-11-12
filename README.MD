@@ -6,6 +6,8 @@ it seems that upstream Magisk now officially supports building on macOS
 
 this repository is thus currently outdated and i have not yet got my hands on to figure this stuff out after the upstream source change.
 
+hint: for who's interested in Cygwin port, this might be a good chance to start contributing cygwin patches upstream (for example to upstream Magisk and nix-rs), as build should be much easier now
+
 below is original README
 
 ===
