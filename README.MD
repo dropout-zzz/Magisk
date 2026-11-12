@@ -8,6 +8,8 @@ this repository is thus currently outdated and i have not yet got my hands on to
 
 hint: for who's interested in Cygwin port, this might be a good chance to start contributing cygwin patches upstream (for example to upstream Magisk and nix-rs), as build should be much easier now
 
+i consider this fork have finished its mission
+
 below is original README
 
 ===
