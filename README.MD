@@ -1,6 +1,6 @@
 notes from dropout-zzz/Magisk fork
 
-it seems that upstream Magisk now officially properly supports building host magiskboot program for macOS and Linux without relying on ndk-build
+In Oct 2026, it seems that upstream Magisk now officially properly supports building host magiskboot program for macOS and Linux without relying on ndk-build
 
 (i saw a few commits abouts it in upstream github repo)
 
