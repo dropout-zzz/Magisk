@@ -1,3 +1,15 @@
+notes from dropout-zzz/Magisk fork
+
+it seems that upstream Magisk now officially supports building on macOS
+
+(i saw a few commits abouts it in upstream github repo)
+
+this repository is thus currently outdated and i have not yet got my hands on to figure this stuff out after the upstream source change.
+
+below is original README
+
+===
+
 ![](docs/images/logo.png)
 
 [![Downloads](https://img.shields.io/badge/dynamic/json?color=green&label=Downloads&query=totalString&url=https%3A%2F%2Fraw.githubusercontent.com%2Ftopjohnwu%2Fmagisk-files%2Fcount%2Fcount.json&cacheSeconds=1800)](https://raw.githubusercontent.com/topjohnwu/magisk-files/count/count.json)
